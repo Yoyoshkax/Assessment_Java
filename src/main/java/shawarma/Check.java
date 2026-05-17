@@ -1,6 +1,6 @@
 package shawarma;
 
-import java.util.List;
+import java.util.Map;
 
 public class Check {
     public static void main(String[] args) {
@@ -9,13 +9,21 @@ public class Check {
 
         Shawarma shawarma = new Shawarma();
 
-        List<Lavash> lavash = databasePrice.availableLavash();
+        Map<String, Ingridient> ingridients = databasePrice.availableIngridients();
 
-        List<Ingridient> ingridients = databasePrice.availableIngridients();
+        Map<String, Lavash> lavashes = databasePrice.availableLavashMap();
 
-        shawarma.setLavash(lavash.add());
+        shawarma.setLavash(lavashes.get("Сырный"));
+        shawarma.addIngridient(ingridients.get("Грибы"));
+        shawarma.addIngridient(ingridients.get("Морковь по-корейски"));
+        shawarma.addIngridient(ingridients.get("Мясо"));
+        shawarma.addIngridient(ingridients.get("Лук"));
+
+        shawarma.removeIngridient(ingridients.get("Лук"));
+
+        System.out.println(shawarma.getReceipt());
+
     }
-
 
 
 }

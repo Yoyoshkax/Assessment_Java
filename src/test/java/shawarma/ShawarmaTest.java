@@ -1,0 +1,50 @@
+package shawarma;
+
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+
+import static org.junit.Assert.assertEquals;
+
+@RunWith(MockitoJUnitRunner.class)
+public class ShawarmaTest {
+
+    private Shawarma shawarma;
+
+    @Mock
+    private Lavash mockLavash;
+
+    @Mock
+    private Ingridient mockIngridient1;
+
+    @Mock
+    private Ingridient mockIngridient2;
+
+    @Before
+    public void setUp() {
+        shawarma = new Shawarma();
+    }
+
+    @Test
+    public void setLavashTest() {
+        shawarma.setLavash(mockLavash);
+        assertEquals("Неправильно установлен лаваш", mockLavash, shawarma.lavash);
+    }
+
+    @Test
+    public void setIngridientTest() {
+        shawarma.addIngridient(mockIngridient1);
+        assertEquals("Ингридиент не добавлен", true, shawarma.ingridients.contains(mockIngridient1));
+    }
+
+    @Test
+    public void removeIngridientTest() {
+        shawarma.addIngridient(mockIngridient1);
+        shawarma.addIngridient(mockIngridient2);
+        shawarma.removeIngridient(mockIngridient2);
+        assertEquals("Некорректный состав, ингридиент не удален", false, shawarma.ingridients.contains(mockIngridient2));
+    }
+}

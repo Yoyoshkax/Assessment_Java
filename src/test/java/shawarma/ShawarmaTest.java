@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
@@ -46,5 +47,21 @@ public class ShawarmaTest {
         shawarma.addIngridient(mockIngridient2);
         shawarma.removeIngridient(mockIngridient2);
         assertEquals("Некорректный состав, ингридиент не удален", false, shawarma.ingridients.contains(mockIngridient2));
+    }
+
+    @Test
+    public void getPriceTest() {
+        shawarma.setLavash(mockLavash);
+        Mockito.when(mockLavash.getPrice()).thenReturn(10.0);
+        shawarma.addIngridient(mockIngridient1);
+        Mockito.when(mockIngridient1.getPrice()).thenReturn(10.0);
+        shawarma.addIngridient(mockIngridient2);
+        Mockito.when(mockIngridient2.getPrice()).thenReturn(10.0);
+        assertEquals("Неправильно посчитанная цена", 30.0, shawarma.getPrice(), 0.0);
+    }
+
+    @Test
+    public void getReceiptTest() {
+
     }
 }

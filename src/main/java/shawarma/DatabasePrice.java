@@ -5,8 +5,8 @@ import java.util.Map;
 
 public class DatabasePrice {
 
-    Map<String, Lavash> lavash = new HashMap<>();
-    Map<String, Ingridient> ingridients = new HashMap<>();
+    private final Map<String, Lavash> lavash = new HashMap<>();
+    private final Map<String, Ingridient> ingridients = new HashMap<>();
 
     public DatabasePrice() {
 

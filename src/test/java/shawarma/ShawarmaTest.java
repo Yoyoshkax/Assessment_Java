@@ -62,6 +62,17 @@ public class ShawarmaTest {
 
     @Test
     public void getReceiptTest() {
+        Mockito.when(mockLavash.getName()).thenReturn("Пшеничный лаваш");
+        Mockito.when(mockLavash.getPrice()).thenReturn(10.0);
+        Mockito.when(mockIngridient1.getName()).thenReturn("Грибы");
+        Mockito.when(mockIngridient1.getPrice()).thenReturn(10.0);
 
+        shawarma.setLavash(mockLavash);
+        shawarma.addIngridient(mockIngridient1);
+
+        String expectedReceipt = String.format("=== Финальный состав шаурмы и её рецепт ===%n%s%n%s%nЦена = %f",
+                "Пшеничный лаваш", "Грибы", 20.0);
+
+        assertEquals("Неверный рецепт шаурмы", expectedReceipt, shawarma.getReceipt());
     }
 }

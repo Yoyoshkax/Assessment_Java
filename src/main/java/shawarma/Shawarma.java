@@ -33,7 +33,7 @@ public class Shawarma {
     public String getReceipt() {
         StringBuilder str = new StringBuilder(String.format("=== Финальный состав шаурмы и её рецепт ==="));
 
-        str.append(String.format("%n%s ", lavash.getName()));
+        str.append(String.format("%n%s", lavash.getName()));
 
         for (Ingridient ingridient : ingridients) {
             str.append(String.format("%n%s", ingridient.getName()));

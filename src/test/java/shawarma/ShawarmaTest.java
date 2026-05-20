@@ -1,16 +1,16 @@
 package shawarma;
 
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class ShawarmaTest {
 
     private Shawarma shawarma;
@@ -24,7 +24,7 @@ public class ShawarmaTest {
     @Mock
     private Ingredient mockIngredient2;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         shawarma = new Shawarma();
     }
@@ -32,13 +32,13 @@ public class ShawarmaTest {
     @Test
     public void setLavashTest() {
         shawarma.setLavash(mockLavash);
-        assertEquals("Неправильно установлен лаваш", mockLavash, shawarma.lavash);
+        assertEquals(mockLavash, shawarma.lavash, "Неправильно установлен лаваш");
     }
 
     @Test
     public void setIngridientTest() {
         shawarma.addIngridient(mockIngredient1);
-        assertEquals("Ингредиент не добавлен", true, shawarma.ingredients.contains(mockIngredient1));
+        assertEquals(true, shawarma.ingredients.contains(mockIngredient1), "Ингредиент не добавлен");
     }
 
     @Test
@@ -46,7 +46,7 @@ public class ShawarmaTest {
         shawarma.addIngridient(mockIngredient1);
         shawarma.addIngridient(mockIngredient2);
         shawarma.removeIngridient(mockIngredient2);
-        assertEquals("Некорректный состав, ингредиент не удален", false, shawarma.ingredients.contains(mockIngredient2));
+        assertEquals(false, shawarma.ingredients.contains(mockIngredient2), "Некорректный состав, ингредиент не удален");
     }
 
     @Test
@@ -57,7 +57,7 @@ public class ShawarmaTest {
         Mockito.when(mockIngredient1.getPrice()).thenReturn(10.0);
         shawarma.addIngridient(mockIngredient2);
         Mockito.when(mockIngredient2.getPrice()).thenReturn(10.0);
-        assertEquals("Неправильно посчитанная цена", 30.0, shawarma.getPrice(), 0.0);
+        assertEquals(30.0, shawarma.getPrice(), "Неправильно посчитанная цена");
     }
 
     @Test
@@ -73,6 +73,6 @@ public class ShawarmaTest {
         String expectedReceipt = String.format("=== Финальный состав шаурмы и её рецепт ===%n%s%n%s%nЦена = %f",
                 "Пшеничный лаваш", "Грибы", 20.0);
 
-        assertEquals("Неверный рецепт шаурмы", expectedReceipt, shawarma.getReceipt());
+        assertEquals(expectedReceipt, shawarma.getReceipt(), "Неверный рецепт шаурмы");
     }
 }

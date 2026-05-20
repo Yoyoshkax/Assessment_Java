@@ -1,9 +1,11 @@
 package shawarma;
 
-import org.junit.Before;
-import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class IngredientTest {
 
@@ -12,23 +14,23 @@ public class IngredientTest {
     private final String expectedName = "Протеиновый соус";
     private final double expectedPrice = 5.0;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         ingredient = new Ingredient(expectedType, expectedName, expectedPrice);
     }
 
     @Test
     public void getNameTest() {
-        assertEquals("Неправильное имя ингредиента", expectedName, ingredient.getName());
+        assertEquals(expectedName, ingredient.getName(), "Неправильное имя ингредиента");
     }
 
     @Test
     public void getPriceTest() {
-        assertEquals("Неправильная цена ингредиента", expectedPrice, ingredient.getPrice(), 0.0);
+        assertEquals(expectedPrice, ingredient.getPrice(), "Неправильная цена ингредиента");
     }
 
     @Test
     public void getTypeTest() {
-        assertEquals("Неправильный тип ингредиента", expectedType, ingredient.getType());
+        assertEquals(expectedType, ingredient.getType(), "Неправильный тип ингредиента");
     }
 }

@@ -1,12 +1,12 @@
 package shawarma;
 
-public class Ingridient {
+public class Ingredient {
 
-    IngridientType type;
+    IngredientType type;
     String name;
     double price;
 
-    public Ingridient(IngridientType type, String name, double price) {
+    public Ingredient(IngredientType type, String name, double price) {
         this.type = type;
         this.name = name;
         this.price = price;
@@ -20,7 +20,7 @@ public class Ingridient {
         return price;
     }
 
-    public IngridientType getType() {
+    public IngredientType getType() {
         return type;
     }
 }

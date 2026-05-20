@@ -9,7 +9,7 @@ public class Check {
 
         Shawarma shawarma = new Shawarma();
 
-        Map<String, Ingridient> ingridients = databasePrice.availableIngridients();
+        Map<String, Ingredient> ingridients = databasePrice.availableIngridients();
 
         Map<String, Lavash> lavashes = databasePrice.availableLavashMap();
 

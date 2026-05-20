@@ -6,25 +6,25 @@ import java.util.List;
 public class Shawarma {
 
     Lavash lavash;
-    List<Ingridient> ingridients = new ArrayList<>();
+    List<Ingredient> ingredients = new ArrayList<>();
 
     public void setLavash(Lavash lavash) {
         this.lavash = lavash;
     }
 
-    public void addIngridient(Ingridient ingridient) {
-        ingridients.add(ingridient);
+    public void addIngridient(Ingredient ingredient) {
+        ingredients.add(ingredient);
     }
 
-    public void removeIngridient(Ingridient ingridient) {
-        ingridients.remove(ingridient);
+    public void removeIngridient(Ingredient ingredient) {
+        ingredients.remove(ingredient);
     }
 
     public double getPrice() {
         double price = lavash.getPrice();
 
-        for (Ingridient ingridient : ingridients) {
-            price += ingridient.getPrice();
+        for (Ingredient ingredient : ingredients) {
+            price += ingredient.getPrice();
         }
 
         return price;
@@ -35,8 +35,8 @@ public class Shawarma {
 
         str.append(String.format("%n%s", lavash.getName()));
 
-        for (Ingridient ingridient : ingridients) {
-            str.append(String.format("%n%s", ingridient.getName()));
+        for (Ingredient ingredient : ingredients) {
+            str.append(String.format("%n%s", ingredient.getName()));
         }
 
         str.append(String.format("%nЦена = %f", getPrice()));

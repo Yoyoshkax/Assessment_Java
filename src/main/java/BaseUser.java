@@ -8,6 +8,7 @@ public class BaseUser {
 
     protected RequestSpecification getSpec() {
         return new RequestSpecBuilder()
+//                .filter(new AllureRestAssured())
                 .setContentType(ContentType.JSON)
                 .setBaseUri(BASE_URL)
                 .build();

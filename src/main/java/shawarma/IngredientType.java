@@ -1,6 +1,6 @@
 package shawarma;
 
-public enum IngridientType {
+public enum IngredientType {
     SAUCE,
     CUCUMBER,
     POTATO,

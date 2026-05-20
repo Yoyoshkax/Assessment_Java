@@ -5,13 +5,13 @@ public class User {
     private String name;
     private String email;
     private String password;
-    private String avatarLink;
+    private String avatar;
 
-    public User(String name, String email, String password, String avatarLink) {
+    public User(String name, String email, String password, String avatar) {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.avatarLink = avatarLink;
+        this.avatar = avatar;
     }
 
     public String getName() {
@@ -38,8 +38,12 @@ public class User {
         this.password = password;
     }
 
-    public void setAvatarLink(String avatarLink) {
-        this.avatarLink = avatarLink;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getAvatar() {
+        return avatar;
     }
 
 }

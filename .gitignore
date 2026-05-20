@@ -9,6 +9,8 @@ target/
 *.iws
 *.iml
 *.ipr
+.allure
+.mvn
 
 ### Eclipse ###
 .apt_generated

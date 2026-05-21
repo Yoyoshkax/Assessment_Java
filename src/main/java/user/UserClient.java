@@ -2,6 +2,7 @@ package user;
 
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.qameta.allure.Step;
+import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 
 import static io.restassured.RestAssured.given;
@@ -43,15 +44,25 @@ public class UserClient extends BaseUser {
                 .then();
     }
 
-//    @Step("Обновляем информацию о пользователе")
-//    public ValidatableResponse updateUser (User user) {
-//
-//    }
+    @Step("Обновляем информацию о пользователе")
+    public ValidatableResponse updateUser(User user) {
+        return given()
+                .filter(new AllureRestAssured())
+                .spec(getSpec())
+                .when()
+                .post(SINGLE_USER_PATH)
+                .then();
+    }
 
-//    @Step("Проверяем зарегистрирован ли емейл в системе")
-//    public ValidatableResponse emailAvailablitiy() {
-//
-//    }
-
-
+    @Step("Проверяем зарегистрирован ли емейл в системе")
+    public Response emailAvailablitiy(String email) {
+        return given()
+                .filter(new AllureRestAssured())
+                .spec(getSpec())
+                .when()
+                .post(CHECK_EMAIL_AVAILABILITY_PATH)
+                .then()
+                .extract()
+                .response();
+    }
 }

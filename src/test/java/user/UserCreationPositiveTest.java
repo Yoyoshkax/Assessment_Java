@@ -14,7 +14,7 @@ public class UserCreationPositiveTest {
     @BeforeEach
     public void setUp() {
         userClient = new UserClient();
-        user = new User("TestUser", "testUser@gmail.com","123321","https://i.imgur.com/OmrLsDz.jpeg");
+        user = new User("TestUser", "testUser@gmail.com", "123321", "https://i.imgur.com/OmrLsDz.jpeg");
     }
 
     @Test

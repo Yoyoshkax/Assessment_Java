@@ -5,6 +5,9 @@ import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static io.restassured.RestAssured.given;
 
 public class UserClient extends BaseUser {
@@ -56,9 +59,12 @@ public class UserClient extends BaseUser {
 
     @Step("Проверяем зарегистрирован ли емейл в системе")
     public Response emailAvailablitiy(String email) {
+        Map<String,String> requestBody = new HashMap<>();
+        requestBody.put("email", email);
         return given()
                 .filter(new AllureRestAssured())
                 .spec(getSpec())
+                .body(requestBody)
                 .when()
                 .post(CHECK_EMAIL_AVAILABILITY_PATH)
                 .then()

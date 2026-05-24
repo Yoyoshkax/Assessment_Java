@@ -24,6 +24,6 @@ public class CheckEmailAvailabilityTest {
         System.out.println(user.getEmail());
         Response userResponse = userClient.emailAvailablitiy(user.getEmail());
         boolean isAvailabile = userResponse.jsonPath().getBoolean("isAvailable");
-        assertFalse(isAvailabile);
+        assertFalse(isAvailabile,"Этот емейл уже зарегистрирован в системе, функция работает некорректно");
     }
 }

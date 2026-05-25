@@ -17,7 +17,7 @@ public class UserClient extends BaseUser {
     private static final String CHECK_EMAIL_AVAILABILITY_PATH = "/api/v1/users/is-available";
 
     @Step("Создаем пользователя")
-    public ValidatableResponse createUser(User user) {
+    public ValidatableResponse createUser(UserDto user) {
         return given()
                 .filter(new AllureRestAssured())
                 .spec(getSpec())
@@ -48,7 +48,7 @@ public class UserClient extends BaseUser {
     }
 
     @Step("Обновляем информацию о пользователе")
-    public ValidatableResponse updateUser(User user) {
+    public ValidatableResponse updateUser(UserDto user) {
         return given()
                 .filter(new AllureRestAssured())
                 .spec(getSpec())

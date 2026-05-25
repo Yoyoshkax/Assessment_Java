@@ -9,12 +9,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UserCreationPositiveTest {
     private UserClient userClient;
-    private User user;
+    private UserDto user;
 
     @BeforeEach
     public void setUp() {
         userClient = new UserClient();
-        user = new User("TestUser", "testUser@gmail.com", "123321", "https://i.imgur.com/OmrLsDz.jpeg");
+        user = new UserDto("TestUser", "testUser@gmail.com", "123321", "https://i.imgur.com/OmrLsDz.jpeg");
     }
 
     @Test

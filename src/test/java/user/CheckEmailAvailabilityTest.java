@@ -6,24 +6,36 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CheckEmailAvailabilityTest {
 
-    User user;
+    UserDto user;
+    EmailDto email;
     UserClient userClient;
 
     @BeforeEach
     public void setUp() {
         userClient = new UserClient();
-        user = new User("TestUser", "testUser@gmail.com", "123321", "https://i.imgur.com/OmrLsDz.jpeg");
+        user = new UserDto("TestUser", "testUser@gmail.com", "123321", "https://i.imgur.com/OmrLsDz.jpeg");
+        email = EmailDataGenerator.createUniqueEmail();
     }
 
     @Test
-    @DisplayName("Проверка допусности емейла для регистрации")
-    public void checkEmailAvailability() {
+    @DisplayName("Проверка недопусности уже существующего в базе емейла для регистрации")
+    public void checkEmailNotAvailable() {
         System.out.println(user.getEmail());
         Response userResponse = userClient.emailAvailablitiy(user.getEmail());
-        boolean isAvailabile = userResponse.jsonPath().getBoolean("isAvailable");
-        assertFalse(isAvailabile,"Этот емейл уже зарегистрирован в системе, функция работает некорректно");
+        boolean isNotAvailabile = userResponse.jsonPath().getBoolean("isAvailable");
+        assertFalse(isNotAvailabile,"Этот емейл уже зарегистрирован в системе, функция работает некорректно, позволяя зарегистировать уже имеющийся емейл");
+    }
+
+    @Test
+    @DisplayName("Проверка несуществующего емейла в базе для регистрации")
+    public void checkAvailableEmail() {
+        System.out.println(email.getEmail());
+        Response userResponse = userClient.emailAvailablitiy(email.getEmail());
+        boolean isAvailable = userResponse.jsonPath().getBoolean("isAvailable");
+        assertTrue(isAvailable, "Этот емейл создаем уникальным каждый прогон теста, ожидаем всегда true");
     }
 }

@@ -1,13 +1,13 @@
 package user;
 
-public class User {
+public class UserDto {
 
     private String name;
     private String email;
     private String password;
     private String avatar;
 
-    public User(String name, String email, String password, String avatar) {
+    public UserDto(String name, String email, String password, String avatar) {
         this.name = name;
         this.email = email;
         this.password = password;

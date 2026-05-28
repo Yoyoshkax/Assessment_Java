@@ -1,11 +1,11 @@
 package user;
 
-import io.restassured.response.ValidatableResponse;
+import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UserCreationPositiveTest {
     private UserClient userClient;
@@ -18,10 +18,21 @@ public class UserCreationPositiveTest {
     }
 
     @Test
-    @DisplayName("Создание пользователя с валидными данными")
-    public void createUserWithValidData() {
-        ValidatableResponse userResponse = userClient.createUser(user);
-        int statusCode = userResponse.extract().statusCode();
+    @DisplayName("Проверка правильности заполнения данных пользователя")
+    public void userShouldBeCreatedWithCorrectCredentials() {
+        Response userResponse = userClient.createUser(user);
+        String name = userResponse.jsonPath().get("name");
+        String password = userResponse.jsonPath().get("password");
+        String role = userResponse.jsonPath().get("role");
+        String email = userResponse.jsonPath().get("email");
+        String avatar = userResponse.jsonPath().get("avatar");
+        int statusCode = userResponse.statusCode();
+
         assertEquals(201, statusCode, "Неправильный статус код");
+        assertEquals(user.getName().toUpperCase(), name.toUpperCase(), "Неправильное имя пользователя");
+        assertEquals(user.getPassword().toUpperCase(), password.toUpperCase(), "Неправильный пароль пользователя");
+        assertEquals("customer".toUpperCase(), role.toUpperCase(), "Неправильно выдана роль для пользователя");
+        assertEquals(user.getEmail().toUpperCase(), email.toUpperCase(), "Неправильно eмейл пользователя");
+        //todo добить проверку с аватаром
     }
 }

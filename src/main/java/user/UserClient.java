@@ -17,14 +17,16 @@ public class UserClient extends BaseUser {
     private static final String CHECK_EMAIL_AVAILABILITY_PATH = "/api/v1/users/is-available";
 
     @Step("Создаем пользователя")
-    public ValidatableResponse createUser(UserDto user) {
+    public Response createUser(UserDto user) {
         return given()
                 .filter(new AllureRestAssured())
                 .spec(getSpec())
                 .body(user)
                 .when()
                 .post(USER_OPERATION_PATH)
-                .then();
+                .then()
+                .extract()
+                .response();
     }
 
     @Step("Получаем список всех пользователей")
@@ -48,23 +50,27 @@ public class UserClient extends BaseUser {
     }
 
     @Step("Обновляем информацию о пользователе")
-    public ValidatableResponse updateUser(UserDto user) {
+    public Response updateUser(UserDto user, String param, int paramValue) {
+        Map<String, String> requestBody = new HashMap<>();
+        requestBody.put("email", user.getEmail());
+        requestBody.put("name", user.getName());
         return given()
                 .filter(new AllureRestAssured())
                 .spec(getSpec())
+                .pathParam(param,paramValue)
                 .when()
                 .post(SINGLE_USER_PATH)
-                .then();
+                .then()
+                .extract()
+                .response();
     }
 
     @Step("Проверяем зарегистрирован ли емейл в системе")
-    public Response emailAvailablitiy(String email) {
-        Map<String,String> requestBody = new HashMap<>();
-        requestBody.put("email", email);
+    public Response emailAvailablitiy(EmailDto email) {
         return given()
                 .filter(new AllureRestAssured())
                 .spec(getSpec())
-                .body(requestBody)
+                .body(email)
                 .when()
                 .post(CHECK_EMAIL_AVAILABILITY_PATH)
                 .then()

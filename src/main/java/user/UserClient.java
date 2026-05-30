@@ -50,16 +50,17 @@ public class UserClient extends BaseUser {
     }
 
     @Step("Обновляем информацию о пользователе")
-    public Response updateUser(UserDto user, String param, int paramValue) {
+    public Response updateUser(String email, String name, String param, int paramValue) {
         Map<String, String> requestBody = new HashMap<>();
-        requestBody.put("email", user.getEmail());
-        requestBody.put("name", user.getName());
+        requestBody.put("email", email);
+        requestBody.put("name", name);
         return given()
                 .filter(new AllureRestAssured())
                 .spec(getSpec())
-                .pathParam(param,paramValue)
+                .pathParam(param, paramValue)
+                .body(requestBody)
                 .when()
-                .post(SINGLE_USER_PATH)
+                .put(SINGLE_USER_PATH)
                 .then()
                 .extract()
                 .response();

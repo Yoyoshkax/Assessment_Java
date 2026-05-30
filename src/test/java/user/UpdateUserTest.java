@@ -22,9 +22,14 @@ public class UpdateUserTest {
     public void updateUser() {
         Response createResponse = userClient.createUser(user);
         int userId = createResponse.jsonPath().get("id");
-        assertEquals(user.getName(),createResponse.jsonPath().get("name"));
-        assertEquals(user.getEmail(),createResponse.jsonPath().get("email"));
-        Response updateResponse = userClient.updateUser(user,"id",userId);
-        //todo добить генератор уникальных емейлов и имён, вкрячить здесь
+        assertEquals(user.getName(), createResponse.jsonPath().get("name"));
+        assertEquals(user.getEmail(), createResponse.jsonPath().get("email"));
+
+        String email = DataGenerator.createUniqueNameAndEmailForUpdate().get("email");
+        String name = DataGenerator.createUniqueNameAndEmailForUpdate().get("name");
+
+        Response updateResponse = userClient.updateUser(email, name, "id", userId);
+        assertEquals(email,updateResponse.jsonPath().get("email"),"Емейл юзера не обновился");
+        assertEquals(name,updateResponse.jsonPath().get("name"),"Имя юзера не обновился");
     }
 }

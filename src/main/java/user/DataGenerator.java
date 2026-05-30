@@ -1,5 +1,7 @@
 package user;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public abstract class DataGenerator {
@@ -18,6 +20,10 @@ public abstract class DataGenerator {
         return new UserDto("User" + getRandomNumber(), "testEmail" + getRandomNumber() + "@gmail.com", "Password" + getRandomNumber(), DEFAULT_AVATAR);
     }
 
-    //todo рассмотреть какую-то идею с интерфейсом может,т.к дублировать метод не круто.
-
+    public static Map<String, String> createUniqueNameAndEmailForUpdate() {
+        Map<String, String> emailAndNameMap = new HashMap<>();
+        emailAndNameMap.put("email", "testEmail" + getRandomNumber() +"@gmail.com");
+        emailAndNameMap.put("name", "newUser" + getRandomNumber());
+        return emailAndNameMap;
+    }
 }

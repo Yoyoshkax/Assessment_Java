@@ -30,13 +30,15 @@ public class UserClient extends BaseUser {
     }
 
     @Step("Получаем список всех пользователей")
-    public ValidatableResponse getAllUsers() {
+    public Response getAllUsers() {
         return given()
                 .filter(new AllureRestAssured())
                 .spec(getSpec())
                 .when()
                 .get(USER_OPERATION_PATH)
-                .then();
+                .then()
+                .extract()
+                .response();
     }
 
     @Step("Получаем информацию об одном пользователе")

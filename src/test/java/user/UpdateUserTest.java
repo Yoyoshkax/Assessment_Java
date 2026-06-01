@@ -29,7 +29,7 @@ public class UpdateUserTest {
         String name = DataGenerator.createUniqueNameAndEmailForUpdate().get("name");
 
         Response updateResponse = userClient.updateUser(email, name, "id", userId);
-        assertEquals(email,updateResponse.jsonPath().get("email"),"Емейл юзера не обновился");
-        assertEquals(name,updateResponse.jsonPath().get("name"),"Имя юзера не обновился");
+        assertEquals(email, updateResponse.jsonPath().get("email"), "Емейл юзера не обновился");
+        assertEquals(name, updateResponse.jsonPath().get("name"), "Имя юзера не обновился");
     }
 }

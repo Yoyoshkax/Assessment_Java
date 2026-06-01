@@ -22,7 +22,7 @@ public abstract class DataGenerator {
 
     public static Map<String, String> createUniqueNameAndEmailForUpdate() {
         Map<String, String> emailAndNameMap = new HashMap<>();
-        emailAndNameMap.put("email", "testEmail" + getRandomNumber() +"@gmail.com");
+        emailAndNameMap.put("email", "testEmail" + getRandomNumber() + "@gmail.com");
         emailAndNameMap.put("name", "newUser" + getRandomNumber());
         return emailAndNameMap;
     }

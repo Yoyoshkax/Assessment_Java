@@ -45,7 +45,7 @@ public class UserClient extends BaseUser {
         return given()
                 .filter(new AllureRestAssured())
                 .spec(getSpec())
-                .pathParam(param,paramValue)
+                .pathParam(param, paramValue)
                 .when()
                 .get(SINGLE_USER_PATH)
                 .then()

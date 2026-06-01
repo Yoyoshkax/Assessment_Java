@@ -24,7 +24,7 @@ public class GetAllUsersTest {
     public void getAllUsersAndCheckStatusCode() {
         Response response = userClient.getAllUsers();
         int statusCode = response.statusCode();
-        assertEquals(200,statusCode,"Неверный статус код");
+        assertEquals(200, statusCode, "Неверный статус код");
     }
 
     @Test
@@ -33,7 +33,7 @@ public class GetAllUsersTest {
         List<Integer> userIds;
         Response response = userClient.getAllUsers();
         userIds = response.jsonPath().getList("id");
-        assertTrue(!userIds.isEmpty(),"Список юзеров пустой");
+        assertTrue(!userIds.isEmpty(), "Список юзеров пустой");
         //todo подумать над обёрткой которая возвращает сразу список, с которым можно работать и не инициализировать в тесте (мб)
     }
 }

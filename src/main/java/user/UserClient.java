@@ -3,7 +3,6 @@ package user;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
-import io.restassured.response.ValidatableResponse;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,13 +41,16 @@ public class UserClient extends BaseUser {
     }
 
     @Step("Получаем информацию об одном пользователе")
-    public ValidatableResponse getSingleUser() {
+    public Response getSingleUser(String param, int paramValue) {
         return given()
                 .filter(new AllureRestAssured())
                 .spec(getSpec())
+                .pathParam(param,paramValue)
                 .when()
                 .get(SINGLE_USER_PATH)
-                .then();
+                .then()
+                .extract()
+                .response();
     }
 
     @Step("Обновляем информацию о пользователе")

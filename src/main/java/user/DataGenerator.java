@@ -4,7 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-public abstract class DataGenerator {
+public final class DataGenerator {
+
+    private DataGenerator() {
+        throw new AssertionError("Нельзя создать инстанс final класса");
+    }
+
     private static final String DEFAULT_AVATAR = "https://i.imgur.com/OmrLsDz.jpeg";
     private static final Random random = new Random();
 

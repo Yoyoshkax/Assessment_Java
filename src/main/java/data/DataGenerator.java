@@ -1,4 +1,8 @@
-package user;
+package data;
+
+import products.ProductDto;
+import user.EmailDto;
+import user.UserDto;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +15,7 @@ public final class DataGenerator {
     }
 
     private static final String DEFAULT_AVATAR = "https://i.imgur.com/OmrLsDz.jpeg";
+    private static final String DEFAULT_PRODUCT_IMAGE = "https://i.imgur.com/OmrLsDz.jpeg";
     private static final Random random = new Random();
 
     private static int getRandomNumber() {
@@ -30,5 +35,9 @@ public final class DataGenerator {
         emailAndNameMap.put("email", "testEmail" + getRandomNumber() + "@gmail.com");
         emailAndNameMap.put("name", "newUser" + getRandomNumber());
         return emailAndNameMap;
+    }
+
+    public ProductDto createNewProduct() {
+        return new ProductDto("TestProduct" + getRandomNumber(), getRandomNumber(), "Test description", 1, new String[]{DEFAULT_PRODUCT_IMAGE, DEFAULT_PRODUCT_IMAGE, DEFAULT_PRODUCT_IMAGE});
     }
 }

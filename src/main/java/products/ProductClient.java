@@ -24,6 +24,19 @@ public class ProductClient extends BaseProduct {
                 .response();
     }
 
+    @Step("Получаем продукт по {id}")
+    public Response getSingleProduct(String param, int paramValue) {
+        return given()
+                .filter(new AllureRestAssured())
+                .spec(getSpec())
+                .pathParam(param,paramValue)
+                .when()
+                .get(PRODUCT_BY_ID_PATH)
+                .then()
+                .extract()
+                .response();
+
+    }
     @Step("Создаем продукт")
     public Response createProduct(ProductDto product) {
         return given()

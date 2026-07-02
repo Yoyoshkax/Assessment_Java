@@ -37,7 +37,7 @@ public final class DataGenerator {
         return emailAndNameMap;
     }
 
-    public ProductDto createNewProduct() {
+    public static ProductDto createNewProduct() {
         return new ProductDto("TestProduct" + getRandomNumber(), getRandomNumber(), "Test description", 1, new String[]{DEFAULT_PRODUCT_IMAGE, DEFAULT_PRODUCT_IMAGE, DEFAULT_PRODUCT_IMAGE});
     }
 }

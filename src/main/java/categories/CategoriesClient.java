@@ -52,15 +52,12 @@ public class CategoriesClient extends BaseCategory {
     }
 
     @Step("Изменение категории по айди {id}")
-    public Response updateSingleCategory(String newName, String imageUrl, String param, int paramValue) {
-        Map<String, String> body = new HashMap<>();
-        body.put("name", newName);
-        body.put("image", imageUrl);
+    public Response updateSingleCategory(Map<String, String> categoryMap, String param, int paramValue) {
         return given()
                 .filter(new AllureRestAssured())
                 .spec(getSpec())
                 .pathParam(param, paramValue)
-                .body(body)
+                .body(categoryMap)
                 .when()
                 .put(CATEGORY_BY_ID_PATH)
                 .then()
@@ -69,14 +66,11 @@ public class CategoriesClient extends BaseCategory {
     }
 
     @Step("Создание новое категории")
-    public Response createCategory(String newName, String imageUrl) {
-        Map<String, String> body = new HashMap<>();
-        body.put("name", newName);
-        body.put("image", imageUrl);
+    public Response createCategory(Map<String, String> categoryMap) {
         return given()
                 .filter(new AllureRestAssured())
                 .spec(getSpec())
-                .body(body)
+                .body(categoryMap)
                 .when()
                 .post(GET_AND_CREATE_CATEGORY_PATH)
                 .then()

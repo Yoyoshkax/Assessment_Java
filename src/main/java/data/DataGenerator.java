@@ -16,6 +16,7 @@ public final class DataGenerator {
 
     private static final String DEFAULT_AVATAR = "https://i.imgur.com/OmrLsDz.jpeg";
     private static final String DEFAULT_PRODUCT_IMAGE = "https://i.imgur.com/OmrLsDz.jpeg";
+    private static final String DEFAULT_CATEGORY_IMAGE = "https://i.imgur.com/OmrLsDz.jpeg";
     private static final Random random = new Random();
 
     private static int getRandomNumber() {
@@ -39,5 +40,12 @@ public final class DataGenerator {
 
     public static ProductDto createNewProduct() {
         return new ProductDto("TestProduct" + getRandomNumber(), getRandomNumber(), "Test description", 1, new String[]{DEFAULT_PRODUCT_IMAGE, DEFAULT_PRODUCT_IMAGE, DEFAULT_PRODUCT_IMAGE});
+    }
+
+    public static Map<String, String> createUniqueCategory() {
+        Map<String, String> categoryMap = new HashMap<>();
+        categoryMap.put("name", "New category" + getRandomNumber());
+        categoryMap.put("image", DEFAULT_CATEGORY_IMAGE);
+        return categoryMap;
     }
 }

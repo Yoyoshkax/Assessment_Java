@@ -25,6 +25,6 @@ public class UploadFileTest {
     public void uploadRandomFile() {
         Response response = fileClient.uploadFile(file);
         int statusCode = response.statusCode();
-        assertEquals(201,statusCode,"Неправильный статус код");
+        assertEquals(201, statusCode, "Неправильный статус код");
     }
 }

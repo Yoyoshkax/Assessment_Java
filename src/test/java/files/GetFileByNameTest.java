@@ -29,7 +29,7 @@ public class GetFileByNameTest {
 
         Response getResponseByFileName = fileClient.getFile(expectedFileName);
         int statusCode = getResponseByFileName.statusCode();
-        assertEquals(200,statusCode,"Неверный статус код");
+        assertEquals(200, statusCode, "Неверный статус код");
         assertNotNull(getResponseByFileName);
         //todo Какая-то базовая проверка, статус код получили верный, не пустой ответ и уже неплохо, надо сохранить файл с ответа куда-то хотя бы
     }

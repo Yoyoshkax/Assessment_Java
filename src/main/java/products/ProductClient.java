@@ -29,7 +29,7 @@ public class ProductClient extends BaseProduct {
         return given()
                 .filter(new AllureRestAssured())
                 .spec(getSpec())
-                .pathParam(param,paramValue)
+                .pathParam(param, paramValue)
                 .when()
                 .get(PRODUCT_BY_ID_PATH)
                 .then()
@@ -37,6 +37,7 @@ public class ProductClient extends BaseProduct {
                 .response();
 
     }
+
     @Step("Создаем продукт")
     public Response createProduct(ProductDto product) {
         return given()

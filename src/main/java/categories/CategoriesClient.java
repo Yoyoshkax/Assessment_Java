@@ -4,7 +4,6 @@ import io.qameta.allure.Step;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.response.Response;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
@@ -65,7 +64,7 @@ public class CategoriesClient extends BaseCategory {
                 .response();
     }
 
-    @Step("Создание новое категории")
+    @Step("Создание новой категории")
     public Response createCategory(Map<String, String> categoryMap) {
         return given()
                 .filter(new AllureRestAssured())

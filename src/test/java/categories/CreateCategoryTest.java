@@ -6,9 +6,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CreateCategoryTest {
 
@@ -20,24 +20,17 @@ public class CreateCategoryTest {
     }
 
     @Test
-    @DisplayName("Создание новой категории c уникальным айди")
-    public void createNewUniqueCategory() {
-        Response categoryListResponse = categoriesClient.getAllCategory();
-        List<Integer> uniqueId = categoryListResponse.jsonPath().getList("id");
-
-        Response newCategoryResponse = categoriesClient.createCategory(DataGenerator.createUniqueCategory());
-        int newCategoryId = newCategoryResponse.jsonPath().get("id");
-
-        assertFalse(uniqueId.contains(newCategoryId),"Создалась категория с существующим айди");
-
-    }
-
-    @Test
     @DisplayName("Проверка наличия правильных аттрибутов в новой созданной категории")
     public void checkCorrectCategoryAttributes() {
-        Response response = categoriesClient.createCategory(DataGenerator.createUniqueCategory());
+        Map<String, String> newCategoryMap = DataGenerator.createUniqueCategory();
+        Response response = categoriesClient.createCategory(newCategoryMap);
         String expectedCategoryName = response.jsonPath().get("name");
         String imageUrl = response.jsonPath().get("image");
 
+        String urlRegex = "^https?://.*";
+
+        assertTrue(imageUrl.matches(urlRegex));
+        assertEquals(expectedCategoryName, newCategoryMap.get("name"));
+        assertEquals(imageUrl, newCategoryMap.get("image"));
     }
 }

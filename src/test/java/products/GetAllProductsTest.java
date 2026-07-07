@@ -20,7 +20,7 @@ public class GetAllProductsTest {
     }
 
     @Test
-    @DisplayName("Проверяем что список не пустой и содержить хотя бы один продукт")
+    @DisplayName("Проверяем что список не пустой и содержит хотя бы один продукт")
     public void checkListShouldBeNotEmpty() {
         Response response = productClient.getAllProducts();
         List<Object> productsList = response.jsonPath().get();

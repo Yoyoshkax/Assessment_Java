@@ -4,6 +4,10 @@ import io.qameta.allure.Step;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.response.Response;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import static io.restassured.RestAssured.given;
 
 public class ProductClient extends BaseProduct {
@@ -52,11 +56,12 @@ public class ProductClient extends BaseProduct {
     }
 
     @Step("Изменяем карточку товара")
-    public Response updateProduct(String param, int paramValue) {
+    public Response updateProduct(String param, int paramValue, Map updatedProductMap) {
         return given()
                 .filter(new AllureRestAssured())
                 .spec(getSpec())
                 .pathParam(param, paramValue)
+                .body(updatedProductMap)
                 .when()
                 .put(PRODUCT_BY_ID_PATH)
                 .then()
@@ -82,7 +87,7 @@ public class ProductClient extends BaseProduct {
         return given()
                 .filter(new AllureRestAssured())
                 .spec(getSpec())
-                .pathParam(param, param)
+                .pathParam(param, paramValue)
                 .when()
                 .get(GET_ONE_PRODUCT_BY_SLUG_PATH)
                 .then()

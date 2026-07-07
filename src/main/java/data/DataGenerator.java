@@ -19,7 +19,7 @@ public final class DataGenerator {
     private static final String DEFAULT_CATEGORY_IMAGE = "https://i.imgur.com/OmrLsDz.jpeg";
     private static final Random random = new Random();
 
-    private static int getRandomNumber() {
+    public static int getRandomNumber() {
         return random.nextInt(1000000);
     }
 
@@ -47,5 +47,13 @@ public final class DataGenerator {
         categoryMap.put("name", "New category" + getRandomNumber());
         categoryMap.put("image", DEFAULT_CATEGORY_IMAGE);
         return categoryMap;
+    }
+
+    public static Map<String, Object> updateProduct() {
+        Map<String, Object> updatedProductTitle = new HashMap<>();
+        updatedProductTitle.put("title", "New tile" + getRandomNumber());
+        updatedProductTitle.put("price", getRandomNumber());
+        updatedProductTitle.put("images", new String[]{DEFAULT_PRODUCT_IMAGE});
+        return updatedProductTitle;
     }
 }

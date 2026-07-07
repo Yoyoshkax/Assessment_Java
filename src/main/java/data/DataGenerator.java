@@ -1,8 +1,8 @@
 package data;
 
-import products.ProductDto;
-import user.EmailDto;
-import user.UserDto;
+import api.products.ProductDto;
+import api.user.EmailDto;
+import api.user.UserDto;
 
 import java.util.HashMap;
 import java.util.Map;

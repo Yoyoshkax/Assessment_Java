@@ -1,4 +1,4 @@
-package ui;
+package ui.base;
 
 import org.junit.jupiter.api.AfterEach;
 import org.openqa.selenium.WebDriver;

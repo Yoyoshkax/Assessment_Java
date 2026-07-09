@@ -6,8 +6,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.junit.jupiter.api.BeforeEach;
 
-public class Driver {
-    private WebDriver driver;
+public class BaseTest {
+    protected WebDriver driver;
 
     public WebDriver getDriver() {
         return driver;

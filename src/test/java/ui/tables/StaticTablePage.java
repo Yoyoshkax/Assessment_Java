@@ -15,6 +15,9 @@ public class StaticTablePage {
     private WebDriver driver;
     private static final String URL = "https://aqa-proka4.org/sandbox/web";
     private static final By STATIC_TABLE_HEADER_XPATH = By.xpath("//section[@id='tables']/div[2]/div[2]/table[@id='usersTable']/thead[1]/tr[1]/th");
+    private static final By STATIC_TABLE_ROWS_XPATH = By.xpath("//section[@id='tables']/div[2]/div[2]/table[@id='usersTable']/tbody[1]/tr");
+    private static final By STATIC_TABLE_SINGLE_ROW_XPATH = By.xpath("//section[@id='tables']/div[2]/div[2]/table[@id='usersTable']/tbody[1]/tr");
+
 
 
     public StaticTablePage(WebDriver driver) {
@@ -35,5 +38,26 @@ public class StaticTablePage {
             headerTexts.add(header.getText());
         };
         return headerTexts;
+    }
+
+    public List<WebElement> getTableRows() {
+        List<WebElement> rowsElements = driver.findElements(STATIC_TABLE_ROWS_XPATH);
+        return rowsElements;
+    }
+
+    public List<String> getTableRowsData() {
+        List<WebElement> rows = getTableRows();
+        List<String> rowsTextData = new ArrayList<>();
+
+        for(WebElement row: rows) {
+            List<WebElement> cells = row.findElements(By.xpath("./td"));
+            List<String> rowData = new ArrayList<>();
+            for(WebElement cell : cells) {
+                rowData.add(cell.getText());
+            }
+
+        rowsTextData.add(String.valueOf(rowData));
+        }
+        return rowsTextData;
     }
 }

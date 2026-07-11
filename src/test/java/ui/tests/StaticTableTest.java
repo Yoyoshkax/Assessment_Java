@@ -1,12 +1,10 @@
 package ui.tests;
 
+import data.DataGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebElement;
 import ui.base.BaseTest;
 import ui.tables.StaticTablePage;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -22,7 +20,7 @@ public class StaticTableTest extends BaseTest {
 
     @Test
     public void checkStaticTableHeaders() {
-        assertEquals(5,staticTablePage.getHeaderTexts().size());
+        assertEquals(5, staticTablePage.getHeaderTexts().size());
         System.out.println(staticTablePage.getHeaderTexts());
     }
 
@@ -34,7 +32,15 @@ public class StaticTableTest extends BaseTest {
 
     @Test
     public void checkRowsData() {
-       int rowsDataCount = staticTablePage.getTableRowsData().size();
+        System.out.println(staticTablePage.getTableRowsData());
+        int rowsDataCount = staticTablePage.getTableRowsData().size();
         assertEquals(3, rowsDataCount);
+    }
+
+    @Test
+    public void checkSingleRowData() {
+        int rowsCount = staticTablePage.getTableRows().size();
+        String singleRowData = staticTablePage.getSingleTableRowData(DataGenerator.getRandomNumberForTableRows(rowsCount));
+        System.out.println(singleRowData);
     }
 }

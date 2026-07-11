@@ -19,7 +19,6 @@ public class StaticTablePage {
     private static final By STATIC_TABLE_SINGLE_ROW_XPATH = By.xpath("//section[@id='tables']/div[2]/div[2]/table[@id='usersTable']/tbody[1]/tr");
 
 
-
     public StaticTablePage(WebDriver driver) {
         this.driver = driver;
     }
@@ -34,9 +33,10 @@ public class StaticTablePage {
     public List<String> getHeaderTexts() {
         List<WebElement> headerElements = driver.findElements(STATIC_TABLE_HEADER_XPATH);
         List<String> headerTexts = new ArrayList<>();
-        for (WebElement header: headerElements ) {
+        for (WebElement header : headerElements) {
             headerTexts.add(header.getText());
-        };
+        }
+        ;
         return headerTexts;
     }
 
@@ -49,15 +49,20 @@ public class StaticTablePage {
         List<WebElement> rows = getTableRows();
         List<String> rowsTextData = new ArrayList<>();
 
-        for(WebElement row: rows) {
+        for (WebElement row : rows) {
             List<WebElement> cells = row.findElements(By.xpath("./td"));
             List<String> rowData = new ArrayList<>();
-            for(WebElement cell : cells) {
+            for (WebElement cell : cells) {
                 rowData.add(cell.getText());
             }
 
-        rowsTextData.add(String.valueOf(rowData));
+            rowsTextData.add(String.valueOf(rowData));
         }
         return rowsTextData;
+    }
+
+    public String getSingleTableRowData(int rowIndex) {
+        String rowData = getTableRowsData().get(rowIndex);
+        return rowData;
     }
 }

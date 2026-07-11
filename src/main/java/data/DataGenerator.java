@@ -23,6 +23,10 @@ public final class DataGenerator {
         return random.nextInt(1000000);
     }
 
+    public static int getRandomNumberForTableRows(int rowsCount) {
+        return random.nextInt(rowsCount);
+    }
+
     public static EmailDto createUniqueEmail() {
         return new EmailDto("testEmail" + getRandomNumber() + "@gmail.com");
     }

@@ -1,4 +1,4 @@
-package ui.tests;
+package ui.tests.tablesTests;
 
 import data.DataGenerator;
 import org.junit.jupiter.api.BeforeEach;

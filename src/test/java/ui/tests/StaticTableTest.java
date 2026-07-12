@@ -4,9 +4,12 @@ import data.DataGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ui.base.BaseTest;
-import ui.tables.StaticTablePage;
+import ui.tablePage.StaticTablePage;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class StaticTableTest extends BaseTest {
 
@@ -21,7 +24,11 @@ public class StaticTableTest extends BaseTest {
     @Test
     public void checkStaticTableHeaders() {
         assertEquals(5, staticTablePage.getHeaderTexts().size());
-        System.out.println(staticTablePage.getHeaderTexts());
+        List<String> expectedHeaderTexts = staticTablePage.getExpectedHeadersTexts();
+        List<String> actualHeaderTexts = staticTablePage.getHeaderTexts();
+        for (String headerText : actualHeaderTexts) {
+            assertTrue(expectedHeaderTexts.contains(headerText));
+        }
     }
 
     @Test

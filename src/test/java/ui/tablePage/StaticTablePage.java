@@ -1,4 +1,4 @@
-package ui.tables;
+package ui.tablePage;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -23,6 +23,15 @@ public class StaticTablePage {
         this.driver = driver;
     }
 
+    public List<String> getExpectedHeadersTexts() {
+        List<String> expectedHeader = new ArrayList<>();
+        expectedHeader.add("ID");
+        expectedHeader.add("Name");
+        expectedHeader.add("Email");
+        expectedHeader.add("Status");
+        expectedHeader.add("Actions");
+        return expectedHeader;
+    }
     public StaticTablePage open() {
         driver.get(URL);
         new WebDriverWait(driver, Duration.ofSeconds(5))

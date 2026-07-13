@@ -11,8 +11,15 @@ pipeline {
         }
         stage('Test') {
             steps {
+                echo 'Tests Started'
                 sh 'mvn clean test'
             }
+        }
+        stage('Allure reports') {
+            allure commandline: 'Allure',
+                includeProperties: false,
+                jdk: '',
+                results: [[path: 'target/allure-results']]
         }
     }
 }
